@@ -33,7 +33,7 @@ int main(void)
 	//몇번 입력할지?
 	scanf("%d",&input_count);
 
-	//입력한 만큼 반복
+	//입력한 만큼  반복
 	while(index!= input_count)
 	{
 		count = 0;
