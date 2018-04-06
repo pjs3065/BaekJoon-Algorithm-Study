@@ -21,6 +21,15 @@ int main(void)
 		else if(strcmp(o,"check") == 0)
 		{
 			printf("%d\n",(b & 1<<(s-1)) >> (s-1));
+
+			/* instead of up line
+			if(b & 1<<(s-1))
+			{
+				printf("1\n");
+			}
+			else
+				printf("0\n");
+			*/
 		}
 
 		else if(strcmp(o, "remove") == 0)
@@ -31,6 +40,8 @@ int main(void)
 		else if(strcmp(o, "toggle") == 0)
 		{
 			b = b ^ (1 << (s-1));
+
+			
 		}
 
 		else if(strcmp(o, "all") == 0)
