@@ -1,70 +1,47 @@
 #include<stdio.h>
 #include<string.h>
-#define lengh 10
+
 int main(void)
 {
-	char s[lengh];
-	int c,n;
+	int c, s;
 	int b = 0;
+	char o[10] ={0,};
 
 	scanf("%d",&c);
-	while(c--)
+
+	for(int i = 0; i < c; i++)
 	{
-		for(int i = 0; i < lengh; i++)
+		scanf("%s %d",o ,&s);
+
+		if(strcmp(o,"add") == 0)
 		{
-			s[i] = '\0';
+			b = b | 1 << (s-1);
 		}
 
-		scanf("%s",s);
-
-		if(strcmp(s,"add") == 0)
+		else if(strcmp(o,"check") == 0)
 		{
-			scanf("%d",&n);
-			b = b | (1 << (n-1));
+			printf("%d\n",(b & 1<<(s-1)) >> (s-1));
 		}
 
-		else if(strcmp(s,"remove") == 0)
+		else if(strcmp(o, "remove") == 0)
 		{
-			scanf("%d",&n);
-			b = b & ~(1 << (n-1));
+			b = b & ~(1 << (s-1));
 		}
 
-		else if(strcmp(s,"check") == 0)
+		else if(strcmp(o, "toggle") == 0)
 		{
-			scanf("%d",&n);
-			if((b & (1 << (n-1))) != 0)
-			{
-				printf("1\n");
-			}
-			else
-			{
-				printf("0\n");
-			}
+			b = b ^ (1 << (s-1));
 		}
 
-		else if(strcmp(s,"toggle") == 0)
+		else if(strcmp(o, "all") == 0)
 		{
-			scanf("%d",&n);
-			if((b & (1 << (n-1))) != 0)
-			{
-				b = b & ~(1 << (n-1));
-			}
-			else
-			{
-				b = b | (1 << (n-1));
-			}
+			b = b | (1 << 20) - 1;
 		}
 
-		else if(strcmp(s,"all") == 0)
-		{
-			b = ~(b & 0);
-		}
-
-		else if(strcmp(s,"empty") == 0)
+		else if(strcmp(o, "empty") == 0)
 		{
 			b = b & 0;
 		}
 	}
-
 	return 0;
 }
