@@ -7,9 +7,7 @@ int main()
 	int e_t = 0, s_t = 0, m_t = 0;
 	int year = 0;
 
-	cin >> e;
-	cin >> s;
-	cin >> m;
+	cin >> e >> s >> m;
 
 	while(1)
 	{
