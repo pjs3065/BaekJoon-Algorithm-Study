@@ -38,7 +38,7 @@ int main()
 
 	//그외의 경우 구하기
 	//채널 가능한지 여부 확인하며 최소값 구하기
-	for(int i = 0; i <=500000; i++)
+	for(int i = 0; i <=1000000; i++)
 	{
 		possible_chanel = i;
 		push_number = possible(possible_chanel);
