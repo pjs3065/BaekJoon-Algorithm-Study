@@ -1,7 +1,5 @@
 #include<iostream>
-#include<algorithm>
 #include<string>
-#include<cstring>
 #include<queue>
 #include<map>
 
@@ -38,7 +36,7 @@ int main()
 		string now = to_string(now_number);
 		q.pop();
 
-		int z = s.find('9');
+		int z = now.find('9');
 		int x = z/3;
 		int y = z%3;
 
@@ -49,13 +47,14 @@ int main()
 
 			if(nx >= 0 && nx < n && ny >= 0 && ny < n)
 			{
-				string next = s;
+				string next = now;
 				swap(next[3*x + y],next[3*nx + ny]);
-				int next = stoi(s);
-				if(dist.count(next) == 0)
+				int number = stoi(next);
+
+				if(dist.count(number) == 0)
 				{
-					dist[next] = dist[now] + 1;
-					q.push(next);
+					dist[number] = dist[now_number] + 1;
+					q.push(number);
 				}
 			}
 		}
@@ -64,7 +63,8 @@ int main()
 	if(dist.count(123456789) == 0)
 	{
 		cout << -1 << '\n';
+	}else{
+		cout << dist[123456789] << '\n';
 	}
-	cout << dist[123456789] << '\n';
 	return 0;
 }
