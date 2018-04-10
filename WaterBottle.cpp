@@ -7,8 +7,8 @@
 using namespace std;
 
 int cap[3];
-bool ans[201];
-bool check[201][201];
+bool ans[201] = {false,};
+bool check[201][201] = {false,};
 
 const int from[6] = {0,0,1,1,2,2};
 const int to[6] = {1,2,0,2,0,1};
