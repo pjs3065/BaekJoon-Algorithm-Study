@@ -2,72 +2,71 @@
 #include<vector>
 #include<cstring>
 #include<algorithm>
+#include<queue>
 
 using namespace std;
 
-vector<int> bottle(201);
+int cap[3];
+bool ans[201];
+bool check[201][201];
+
+const int from[6] = {0,0,1,1,2,2};
+const int to[6] = {1,2,0,2,0,1};
 
 int main()
 {
-	int f, s, t;
-	int n = 0;
-	cin >> f >> s >> t;
-
-	for(int i = 0; i < 201; i++)
+	//Input
+	for(int i = 0; i < 3; i++)
 	{
-		bottle[i] = 999;
+		cin >> cap[i];
 	}
 
-	bottle[0] = t;
+	int sum = cap[2];
+	queue<pair<int,int>> q;
+	q.push(make_pair(0,0));
+	check[0][0] = true;
+	ans[cap[2]] = true;
 
-	if( f + s < t )
+	while(!q.empty())
 	{
-		for(int i = 1; i <= f + s; i++)
-		{
-			bottle[++n] = t - i;
-		}
+		//Current each bottle's water value;
+		int cur[3]; //x, y, z
+		cur[0] = q.front().first;
+		cur[1] = q.front().second;
+		cur[2] = sum - cur[0] - cur[1];
+		q.pop();
 
-	}
-
-	else if(f + s >= t)
-	{
-		if(f > s)
+		//move water from -> to (x -> y, x -> z, y -> x, y -> z, z -> x, z -> y)
+		for(int i = 0; i < 6; i++)
 		{
-			int temp;
-			temp = f;
-			f = s;
-			s = temp;
-		}
-
-		for(int i = f; i <= s; i++)
-		{
-			if( t - f == s)
+			int next[3] = { cur[0], cur[1], cur[2] };
+			next[to[i]] += next[from[i]];
+			next[from[i]] = 0;
+			if(next[to[i]] >= cap[to[i]])
 			{
-				bottle[++n] = f;
+				next[from[i]] = next[to[i]] - cap[to[i]];
+				next[to[i]] = cap[to[i]];
 			}
-			else
+
+			if(check[next[0]][next[1]] == false)
 			{
-				bottle[++n] = i;
-				bottle[++n] = t - i;
+				check[next[0]][next[1]] = true;
+				q.push(make_pair(next[0],next[1]));
+				if(next[0] == 0)
+				{
+					ans[next[2]] = true;
+				}
 			}
 		}
 	}
 
-	sort(bottle.begin(),bottle.end());
-
-	for(int i = 0; i <= n; i++)
+	for(int i = 1; i <= cap[2]; i++)
 	{
-		if(i == 0 && bottle[i] != 0)
+		if(ans[i] == true)
 		{
-			cout << bottle[i];
-		}
-
-		else if(bottle[i] !=0)
-		{
-			cout << ' '<< bottle[i];
+			cout << i << ' ';
 		}
 	}
-
 	cout << '\n';
 	return 0;
 }
