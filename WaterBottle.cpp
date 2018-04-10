@@ -1,17 +1,14 @@
 #include<iostream>
-#include<vector>
-#include<cstring>
-#include<algorithm>
 #include<queue>
 
 using namespace std;
 
 int cap[3];
-bool ans[201] = {false,};
-bool check[201][201] = {false,};
+bool ans[201];
+bool check[201][201];
 
-const int from[6] = {0,0,1,1,2,2};
-const int to[6] = {1,2,0,2,0,1};
+int from[] = {0,0,1,1,2,2};
+int to[] = {1,2,0,2,0,1};
 
 int main()
 {
@@ -48,7 +45,7 @@ int main()
 				next[to[i]] = cap[to[i]];
 			}
 
-			if(check[next[0]][next[1]] == false)
+			if(!check[next[0]][next[1]])
 			{
 				check[next[0]][next[1]] = true;
 				q.push(make_pair(next[0],next[1]));
@@ -60,7 +57,7 @@ int main()
 		}
 	}
 
-	for(int i = 1; i <= cap[2]; i++)
+	for(int i = 0; i <= cap[2]; i++)
 	{
 		if(ans[i] == true)
 		{
