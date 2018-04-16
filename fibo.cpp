@@ -6,36 +6,39 @@ bool check[100];
 
 
 int fibonacci(int n) {
-	
+
 	if (n == 0) {
 
-		check[n] = true;
-		d[n][0] = 1;
+		d[0][0] = 1;
+		d[0][1] = 0;
+
 		return 0;
 	} 
-	
+
 	else if (n == 1) {
 
-		check[n] = true;
-		d[n][1] = 1;
+		d[1][0] = 0;
+		d[1][1] = 1;
+
 		return 1;
-	} 
-	
+	}
+
 	else if (check[n] == false)
 	{
 		check[n] = true;
-		fi[n] = fibonacci(n-2) + fibonacci(n-1);
+		fi[n] = fibonacci(n-1) + fibonacci(n-2);
 	}
-	
-	else
+
+	if(d[n][0] == 0 && d[n][1] == 0)
 	{
-		for(int i = 0; i < n; i++)
+		for(int i  = n - 2; i < n; i++)
 		{
 			d[n][0] += d[i][0];
 			d[n][1] += d[i][1];
 		}
-		return fi[n];
 	}
+
+	return fi[n];
 }
 
 int main()
@@ -48,24 +51,8 @@ int main()
 		int n;
 		scanf("%d", &n);
 
-		for(int i = 0; i <100; i++)
-		{
-			check[i] = false;
-		}
-
 		fibonacci(n);
-
-		int count_zero = 0;
-		int count_one = 0;
-
-		for(int i = 0; i < n; i++)
-		{
-			count_zero += d[i][0];
-			count_one += d[i][1];
-		}
-
-		printf("%d %d\n", count_zero, count_one);
-
+		printf("%d %d\n", d[n][0],d[n][1]);
 		count ++;
 	}
 }
