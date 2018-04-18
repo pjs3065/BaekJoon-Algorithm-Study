@@ -4,7 +4,6 @@ int d[100][100];
 int fi[100];
 bool check[100];
 
-
 int fibonacci(int n) {
 
 	if (n == 0) {
