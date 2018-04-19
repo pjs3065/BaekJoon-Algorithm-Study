@@ -15,8 +15,8 @@ int main(void)
 {
 	int t;
 	int count = 1;
-	bool result_count1[10000];
-	bool result_count2[10000];
+	bool result_count1[30000];
+	bool result_count2[30000];
 
 	int x1,y1,x2,y2;
 	int r1, r2;
@@ -27,7 +27,6 @@ int main(void)
 	//입력한 만큼  반복
 	while(count <= t)
 	{
-
 		scanf("%d %d %d %d %d %d",&x1,&y1,&r1,&x2,&y2,&r2);
 
 		for(int i = x1-r1; i <= x1 + r1; i++)
@@ -57,7 +56,8 @@ int main(void)
 		}
 
 		int ans = 0;
-		for(int i = 0; i<= 10000; i++)
+
+		for(int i = 0; i<= 30000; i++)
 		{
 			if(result_count1 == result_count2)
 			{
