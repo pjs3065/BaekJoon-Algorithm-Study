@@ -15,8 +15,8 @@ int main(void)
 {
 	int t;
 	int count = 1;
-	bool result_count1[30000];
-	bool result_count2[30000];
+	bool result_count1[100000];
+	bool result_count2[100000];
 
 	int x1,y1,x2,y2;
 	int r1, r2;
