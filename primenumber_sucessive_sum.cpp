@@ -35,15 +35,13 @@ int main()
 
 	while(r < count)
 	{
-		if(sum == n)
+		if(sum <= n)
 		{
-			ans++;
-			r++;
-			sum += prime[r];
-		}
+			if(sum == n)
+			{
+				ans++;
+			}
 
-		else if(sum < n)
-		{
 			r++;
 			sum += prime[r];
 		}
