@@ -111,14 +111,14 @@ int main()
 	vector<int> a_sum;
 	vector<int> b_sum;
 
-	//a가 될 수 있는 전체 수 ( 고쳐야할 부분 : circular pizza )
+	//a가 될 수 있는 전체 수
 	for(int i = 0; i < a_n; i++)
 	{
 		sum = 0;
 
-		for(int j = i; j < a_n; j++)
+		for(int j = i; j < a_n + i; j++)
 		{
-			sum += a[j];
+			sum += a[j % a_n];
 
 			if(sum < t)
 			{
@@ -137,9 +137,9 @@ int main()
 	{
 		sum = 0;
 
-		for(int j = i; j < b_n; j++)
+		for(int j = i; j < b_n + i; j++)
 		{
-			sum += b[j];
+			sum += b[j % b_n];
 
 			if(sum < t)
 			{
@@ -166,18 +166,6 @@ int main()
 
 	for(int i = 0; i < a_length; i++)
 	{
-		printf("%d ",a_sum[i]);
-	}
-
-	printf("\n");
-
-	for(int i = 0; i < b_length; i++)
-	{
-		printf("%d ",b_sum[i]);
-	}
-
-	for(int i = 0; i < a_length; i++)
-	{
 		for(int j = 0; j < b_length; j++)
 		{
 			if(a_sum[i] + b_sum[j] == t)
@@ -187,6 +175,6 @@ int main()
 		}
 	}
 
-	printf("\n%d\n",ans);
+	printf("%d\n",ans);
 	return 0;
 }
