@@ -105,7 +105,6 @@ int main()
 
 	}
 
-
 	// a ©м b х╔гу
 
 	vector<int> a_sum;
@@ -168,6 +167,11 @@ int main()
 	{
 		for(int j = 0; j < b_length; j++)
 		{
+			if(a_sum[i] + b_sum[j] > t)
+			{
+				break;
+			}
+
 			if(a_sum[i] + b_sum[j] == t)
 			{
 				ans+= 1;
