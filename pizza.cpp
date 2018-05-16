@@ -111,7 +111,7 @@ int main()
 	vector<int> a_sum;
 	vector<int> b_sum;
 
-	//a가 될 수 있는 전체 수 (고쳐야할 부분 : circular pizza)
+	//a가 될 수 있는 전체 수 ( 고쳐야할 부분 : circular pizza )
 	for(int i = 0; i < a_n; i++)
 	{
 		sum = 0;
