@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
-	int t;
-	scanf("%d", &t);
+	long long t;
+	scanf("%lld", &t);
 
 	int a_n, b_n;
 	scanf("%d %d", &a_n, &b_n);
@@ -26,89 +26,11 @@ int main()
 		scanf("%d", &b[i]);
 	}
 
-	//모두 a일경우
+	vector<long long> a_sum;
+	vector<long long> b_sum;
 
-	int l = 0;
-	int r = 0;
-
-	int sum = a[l];
-	int ans = 0;
-
-	while(l < a_n)
-	{
-		if(sum <= t)
-		{
-			if(sum == t)
-			{
-				ans ++;
-			}
-
-			r++;
-			r = r % a_n;
-			sum += a[r];
-		}
-
-		else
-		{
-			if(l == r)
-			{
-				r++;
-				r = r % a_n;
-				sum += a[r];
-			}
-
-			else
-			{
-				sum -= a[l];
-				l++;
-			}
-		}
-	}
-
-
-	//모두 b일경우
-
-	l = 0;
-	r = 0;
-
-	sum = b[l];
-
-	while(l < b_n)
-	{
-		if(sum <= t)
-		{
-			if(sum == t)
-			{
-				ans ++;
-			}
-
-			r++;
-			r = r % b_n;
-			sum += b[r];
-		}
-
-		else
-		{
-			if(l == r)
-			{
-				r++;
-				r = r % b_n;
-				sum += b[r];
-			}
-
-			else
-			{
-				sum -= b[l];
-				l++;
-			}
-		}
-
-	}
-
-	// a 와 b 혼합
-
-	vector<int> a_sum;
-	vector<int> b_sum;
+	long long sum;
+	long long ans = 0;
 
 	//a가 될 수 있는 전체 수
 	for(int i = 0; i < a_n; i++)
@@ -119,14 +41,16 @@ int main()
 		{
 			sum += a[j % a_n];
 
-			if(sum < t)
+			if(sum > t) break;
+
+			else if(sum == t && j % a_n != i - 1)
 			{
-				a_sum.push_back(sum);
+				ans += 1;
 			}
 
-			else
+			else if(sum < t )
 			{
-				break;
+				a_sum.push_back(sum);
 			}
 		}
 	}
@@ -140,7 +64,14 @@ int main()
 		{
 			sum += b[j % b_n];
 
-			if(sum < t)
+			if(sum > t) break;
+
+			else if(sum == t && j % a_n != i - 1)
+			{
+				ans += 1;
+			}
+
+			else if(sum < t && j % a_n != i - 1)
 			{
 				b_sum.push_back(sum);
 			}
@@ -158,11 +89,9 @@ int main()
 	int a_length = a_sum.size();
 	int b_length = b_sum.size();
 
-	l = 0;
-	r = 0;
-
 	sum = 0;
 
+	//a와 b 혼합
 	for(int i = 0; i < a_length; i++)
 	{
 		for(int j = 0; j < b_length; j++)
@@ -172,13 +101,13 @@ int main()
 				break;
 			}
 
-			if(a_sum[i] + b_sum[j] == t)
+			else if(a_sum[i] + b_sum[j] == t)
 			{
 				ans+= 1;
 			}
 		}
 	}
 
-	printf("%d\n",ans);
+	printf("%lld\n",ans);
 	return 0;
 }
