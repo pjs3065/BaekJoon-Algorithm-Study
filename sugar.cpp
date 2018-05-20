@@ -2,33 +2,30 @@
 
 int main()
 {
-	int n, temp;
-	int f, t, ans;
+	int n;
+	int ans = 9999;
+
 	scanf("%d", &n);
 
-	f =  n / 5;
-	temp = n % 5;
-	t = temp / 3;
-	temp = temp % 3;
-
-	if(temp != 0)
+	for(int x = 0; x <= n/5; x++)
 	{
-		t =  n / 3;
-		temp = t % 3;
-		f = temp / 5;
-		temp = temp % 5;
+		for(int y = 0; y <= n/3; y++)
+		{
+			if((5*x) + (3*y) == n)
+			{
+				if(x + y < ans)
+				{
+					ans = x + y;
+				}
+			}
+
+		}
 	}
 
-	if(temp != 0)
+	if(ans == 9999)
 	{
 		printf("-1\n");
 	}
-
 	else
-	{
-		ans = f + t;
-		printf("%d\n",ans);
-	}
-
-	return 0;
+		printf("%d\n", ans);
 }
