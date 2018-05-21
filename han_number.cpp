@@ -1,4 +1,7 @@
 #include<stdio.h>
+#include<vector>
+
+using namespace std;
 
 int main()
 {
@@ -13,14 +16,35 @@ int main()
 	}
 
 	int m = 100;
+	int ans = 99;
 
 	for(int i = 100; i <= n; i++)
 	{
-		for(int i = 
+		int number = i;
+		vector<int> elements; 
 
+		for(int j = m; j > 0; j = j / 10)
+		{
+			int d = number / j;
+			number = number % j;
+			elements.push_back(d);
+		}
 
+		int check = 1;
+		int distance = elements[0] - elements[1];
 
+		for(int i = 0; i < elements.size()-1; i++)
+		{
+			if(!(distance == (elements[i] - elements[i+1])))
+			{
+				check = 0;
+			}
+		}
 
+		if(check == 1)
+		{
+			ans += 1;
+		}
 	}
-
+	printf("%d\n", ans);
 }
