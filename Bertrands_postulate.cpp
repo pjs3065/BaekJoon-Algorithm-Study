@@ -40,7 +40,7 @@ int main()
 
 		int count = 0;
 
-		for(int i = n; i <= m; i++)
+		for(int i = n + 1; i <= m; i++)
 		{
 			if(prime[i] == 0)
 			{
