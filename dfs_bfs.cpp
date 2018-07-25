@@ -6,11 +6,61 @@
 
 using namespace std;
 
+vector<int> graph[1001];
+vector<int> check1(1001);
+vector<int> check2(1001);
+int n, m, v;
+
+void dfs(int p)
+{
+	if(check1[p] == 0)
+	{
+		check1[p] = 1;
+		printf("%d ", p);
+	}
+
+	for(int i = 0; i < graph[p].size(); i++)
+	{
+		if(check1[graph[p][i]] == 0)
+		{
+			dfs(graph[p][i]);
+		}
+	}
+}
+
+void bfs()
+{
+	//큐 선언 
+	queue<int> q;
+	q.push(v);
+
+	check2[v] = 1;
+	printf("%d ",v);
+
+	while(!q.empty())
+	{
+		int p = q.front();
+		q.pop();
+
+		for(int i = 0; i < graph[p].size(); i++)
+		{
+			int c_v = graph[p][i];
+
+			if(check2[graph[p][i]] == 0)
+			{
+				q.push(graph[p][i]);
+				check2[graph[p][i]] = 1;
+				printf("%d ",c_v);
+			}
+		}
+	}
+}
+
+
 int main()
 {
-	int n, m, v; // n: 정점 m: 간선, v: 시작할 정점의 번호
+	// n: 정점 m: 간선, v: 시작할 정점의 번호
 	scanf("%d %d %d", &n, &m, &v);
-	vector<int> graph[1001];
 
 	//간선들 입력
 	int s,e;
@@ -26,65 +76,8 @@ int main()
 		sort(graph[i].begin(),graph[i].end());
 	}
 
-	//dfs 만들기
-	vector<int> check1(1001);
-
-	//stack 선언
-	stack<int> st;
-	st.push(v);
-	check1[v] = 1;
-	printf("%d ", v);
-
-	while(!st.empty())
-	{
-		int p = st.top();
-		st.pop();
-
-		int len = graph[p].size();
-
-		for(int i = 0; i < len; i++)
-		{
-			int c_v = graph[p][i];
-
-			if(check1[c_v] == 0)
-			{
-				st.push(p);
-				st.push(c_v);
-				check1[c_v] = 1;
-				printf("%d ",c_v);
-				break;
-			}
-		}
-	}
+	dfs(v);
 	printf("\n");
-
-	//bfs 만들기
-	vector<int> check2(1001);
-
-	//큐 선언 
-	queue<int> q;
-	q.push(v);
-	check2[v] = 1;
-	printf("%d ",v);
-
-	while(!q.empty())
-	{
-		int p = q.front();
-		q.pop();
-
-		int len = graph[p].size();
-
-		for(int i = 0; i < len; i++)
-		{
-			int c_v = graph[p][i];
-
-			if(check2[c_v] == 0)
-			{
-				q.push(c_v);
-				check2[c_v] = 1;
-				printf("%d ",c_v);
-			}
-		}
-	}
+	bfs();
 	return 0;
 }
