@@ -16,9 +16,24 @@ getline(cin, s);
 1. 스택 : 가장 가까운것이 의미가 있다.
 * stack.size()할때 조건문에 넣으면 pop할때마다 size가 변하니깐 주의하기 바란다. 많이 실수하는듯
 
-2. 
+2. 큐 : 뒤에 넣는게 push , 앞에 빼는게 pop
 
+3. 덱은 양쪽에서 가능 push_front, pop_front, push_back, pop_back
 
+4. 문자열
+for(int i = 0; s[i]; i++) 문자열에는 null이 마지막에 있기에 널이 나오기 전까지 돈다.
+* for문안에 문자열 길이 재는것을 넣지는 말자. o(n2)이 된다. (strlen) 
+- size()함수와 length()는 빅오(1)이다. 안심하고 안에다가 써줘도 된다.
+
+- stoi / stol, stoll, stof, stod, stold, stoul, stoull -> #include<string>
+- to_string -> 정수 또는 실수를 문자열로 바꿔줄 수 있다.
+
+- cout << count(s.begin(), s.end(), i) -> 빈도 구할때 사용
+- auto : 다양한 타입의 변수를 받을 수 있다.
+- find(s.begin(), s.end(), i) i와 같은걸 찾아서 주소값을 던져 준다.
+- for (char x: s)
+
+<다이나믹 프로그래밍>
 
 
 <그래프 강의>
