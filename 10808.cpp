@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#include<vector>
+#include<algorithm>
 
 using namespace std;
 int main()
@@ -8,17 +8,9 @@ int main()
 	string s;
 	cin >> s;
 
-	int len = s.length();
-	vector<int> alpha (26);
-
-	for(int i = 0; i < len; i++)
+	for(int i = 'a'; i <= 'z'; i++)
 	{
-		alpha[s[i]-'a']++;
-	}
-
-	for(int i = 0; i < 26; i++)
-	{
-		cout << alpha[i] << " ";
+		cout << count(s.begin(), s.end(),i) <<' ';
 	}
 
 	cout << '\n';
